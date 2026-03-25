@@ -27,11 +27,12 @@ spec:
         - name: MYSQL_PASSWORD
           value: "capsule_password"
         volumeMounts:
-        - name: mysql-storage
+        - name: mysql-nfs
           mountPath: /var/lib/mysql
       volumes:
-      - name: mysql-storage
-        emptyDir: {}
+      - name: mysql-nfs
+        persistentVolumeClaim:
+            claimName:  mongo-pvc
 ---
 apiVersion: v1
 kind: Service
